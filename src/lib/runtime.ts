@@ -52,7 +52,6 @@ export async function finish(session: Session, paste: boolean) {
     if (front === session.target) {
       try {
         await Clipboard.paste(result.text);
-        await showHUD("Transcript pasted");
         return;
       } catch {
         /* Transcript was already copied and persisted. */

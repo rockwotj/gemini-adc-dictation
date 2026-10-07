@@ -9,7 +9,7 @@ Build and import the extension using the instructions below. In **Raycast Settin
 1. Put your cursor where you want to dictate.
 2. Press the hotkey once. Wait for the recording indicator, then speak.
 3. Press it again to stop and transcribe.
-4. The transcript is automatically pasted into the app active when you stop dictation. If you switch apps while transcription is running, it is copied; press ⌘V wherever you want it.
+4. The transcript is automatically pasted into the app active when you stop dictation, without a success popup. If you switch apps while transcription is running, it is copied; a notification tells you to press ⌘V wherever you want it. Failures still show an error.
 
 On the first recording, allow **Gemini Recorder** to use the microphone. Pasting requires **Raycast** Accessibility permission in System Settings → Privacy & Security → Accessibility. The recorder is a small, locally compiled, ad-hoc-signed macOS app, with a floating recording indicator and menu bar controls. The glass indicator shows recording status without a second Raycast recording popup. It records only after the command starts it.
 
