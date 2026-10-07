@@ -1,0 +1,147 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "gemini-adc-dictation",
+  "title": "Gemini ADC Dictation",
+  "description": "Record, transcribe, and paste with Gemini on Vertex AI using Application Default Credentials.",
+  "icon": "extension-icon.png",
+  "author": "rockwood",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rockwotj/gemini-adc-dictation.git"
+  },
+  "platforms": [
+    "macOS"
+  ],
+  "categories": [
+    "Productivity",
+    "Developer Tools"
+  ],
+  "commands": [
+    {
+      "name": "toggle-dictation",
+      "title": "Toggle Gemini Dictation",
+      "description": "Start recording, or stop and transcribe into the app you’re using.",
+      "mode": "no-view"
+    },
+    {
+      "name": "cancel-dictation",
+      "title": "Cancel Gemini Dictation",
+      "description": "Stop recording and discard the current audio.",
+      "mode": "no-view"
+    },
+    {
+      "name": "history",
+      "title": "Gemini Transcription History",
+      "description": "Copy transcripts or retry a failed recording.",
+      "mode": "view"
+    },
+    {
+      "name": "transcribe-file",
+      "title": "Transcribe Audio File with Gemini",
+      "description": "Select an audio file and copy its transcript.",
+      "mode": "view"
+    },
+    {
+      "name": "check-setup",
+      "title": "Check Gemini ADC Setup",
+      "description": "Check credentials and model access by transcribing a bundled synthetic speech clip.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "project",
+      "title": "Google Cloud Project",
+      "description": "Leave blank to use GOOGLE_CLOUD_PROJECT, the ADC quota project, or your gcloud default project.",
+      "type": "textfield",
+      "required": false
+    },
+    {
+      "name": "location",
+      "title": "Vertex AI Location",
+      "description": "Use global or a supported regional endpoint.",
+      "type": "textfield",
+      "required": false,
+      "default": "global"
+    },
+    {
+      "name": "model",
+      "title": "Gemini Transcription Model",
+      "description": "Defaults to the verified 3.5 specialist preview. Use gemini-3.5-transcribe for GA when your project has access. No automatic fallback.",
+      "type": "textfield",
+      "required": false,
+      "default": "gemini-3.5-transcribe-preview"
+    },
+    {
+      "name": "credentialsFile",
+      "title": "ADC File (Optional)",
+      "description": "Only needed if credentials are outside the normal gcloud ADC location. Credentials stay on this Mac.",
+      "type": "file",
+      "required": false
+    },
+    {
+      "name": "style",
+      "title": "Transcription Style",
+      "description": "Clean dictation removes fillers and spoken self-corrections; verbatim preserves spoken words.",
+      "type": "dropdown",
+      "required": false,
+      "default": "clean",
+      "data": [
+        {
+          "title": "Clean Dictation",
+          "value": "clean"
+        },
+        {
+          "title": "Verbatim",
+          "value": "verbatim"
+        }
+      ]
+    },
+    {
+      "name": "vocabulary",
+      "title": "Custom Vocabulary",
+      "description": "Names and terms to spell correctly, separated by commas.",
+      "type": "textfield",
+      "required": false
+    },
+    {
+      "name": "autoPaste",
+      "title": "Insertion",
+      "label": "Automatically paste when transcription finishes",
+      "description": "Pastes into the app active when you stop dictation. If you switch apps during transcription, it copies instead. Raycast needs Accessibility permission.",
+      "type": "checkbox",
+      "required": false,
+      "default": true
+    },
+    {
+      "name": "maxSeconds",
+      "title": "Recording Limit (Seconds)",
+      "description": "Recording stops automatically after this limit; run Toggle again to transcribe. Between 5 and 300 seconds.",
+      "type": "textfield",
+      "required": false,
+      "default": "300"
+    }
+  ],
+  "scripts": {
+    "build:native": "node scripts/build-native.mjs",
+    "build": "npm run build:native && ray build -e dist",
+    "dev": "npm run build:native && ray develop",
+    "typecheck": "tsc --noEmit",
+    "lint": "ray lint",
+    "test": "node --import tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@raycast/api": "2.7.0",
+    "google-auth-library": "11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.8.0",
+    "tsx": "^4.20.0",
+    "eslint": "^9.0.0",
+    "@raycast/eslint-config": "^2.0.0",
+    "prettier": "^3.5.0"
+  }
+}

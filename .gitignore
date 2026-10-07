@@ -1,0 +1,12 @@
+node_modules/
+dist/
+assets/Gemini Recorder.app/
+.DS_Store
+.env
+.env.*
+*.rayext
+application_default_credentials.json
+client_secret*.json
+token.json
+work/
+raycast-env.d.ts
